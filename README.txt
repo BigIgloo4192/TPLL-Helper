@@ -1,53 +1,197 @@
-# TPLL Helper for Minecraft (Version 2.1)
+TPLL Helper for Minecraft
+Version 2.5
+==========
 
-TPLL Helper is a standalone desktop application designed to assist players in projects like "Build The Earth" by automating the process of teleporting to specific real-world coordinates within Minecraft. It captures coordinates directly from Google Earth Pro and instantly executes the `/tpll` command in your active Minecraft window.
+A standalone desktop tool for Build The Earth builders. TPLL Helper automates
+teleporting to real-world coordinates by capturing them directly from
+Google Earth Pro and executing the /tpll command in Minecraft — all with a
+single keypress.
 
-## Features
+GitHub: https://github.com/BigIgloo4192/TPLL-Helper
 
-* **Fully Portable:** Distributed as a single, standalone `.exe` file. No Python installation required!
-* **Automated `/tpll` Execution:** Copies coordinates from Google Earth Pro, natively swaps to your Minecraft window, and pastes the command into chat automatically.
-* **Graphical User Interface (GUI):**
-    * Tabbed layout ("Main" and "Settings").
-    * Displays live TPLL usage statistics (session count, total count) and program uptime.
-* **Foolproof Configuration:**
-    * Settings are now managed via dropdown menus to prevent invalid keys.
-    * The main TPLL Hotkey prevents you from selecting keys that trigger default actions in Google Earth Pro (like resetting your camera).
-* **Clean Workspace:** Settings are automatically saved to your hidden Windows AppData folder (`%LOCALAPPDATA%\TPLLHelper`), so you don't have to keep track of a `.json` file on your desktop.
-* **Auto-Start Hotkeys:** The TPLL hotkey automatically becomes active when the application starts.
-* **Conditional Startup Visibility:** Option to start the GUI minimized to your taskbar on subsequent launches so it stays out of your way.
 
-## How to Install & Run
+QUICK START
+-----------
+1. Download TPLLHelper-2.5.exe and place it anywhere on your computer.
+2. Double-click to run. (If hotkeys don't register, try "Run as administrator".)
+3. Open Google Earth Pro and navigate to your target location.
+4. Hover your mouse over the Google Earth Pro window.
+5. Press the TPLL Hotkey (default: backtick ` key).
+6. You're there.
 
-1. Download the `tpllhelper-2.1.exe` file.
-2. Place it anywhere on your computer (like your Desktop or a dedicated BTE folder).
-3. Double-click to run! (Note: If your hotkeys do not seem to register, try right-clicking the `.exe` and selecting "Run as administrator").
+Google Earth Pro does NOT need to be the focused window. You can have
+Minecraft in the foreground, hover over GEP, press the hotkey, and it
+will activate GEP, grab coordinates, switch to Minecraft, and teleport
+you automatically.
 
-## Using the Application
 
-1. Ensure the TPLL Helper application is running and the TPLL Hotkey is active (check the status bar on the Main tab).
-2. Open Google Earth Pro and navigate to your desired location.
-3. Move your mouse cursor so it is hovering over the Google Earth Pro window.
-4. Press your configured TPLL Hotkey (default is the backtick key: `).
-5. The program will automatically grab the coordinates, pull Minecraft to the front, and teleport you!
+FEATURES
+--------
+Portable
+    Single .exe file, no Python or dependencies to install.
 
-## Managing Settings
+One-Key Teleport
+    Copies coordinates from Google Earth Pro, switches to Minecraft,
+    opens chat, types /tpll <coords>, and hits Enter. All automatic.
 
-The Settings Tab allows you to change your hotkeys. 
-* **TPLL Hotkey:** The key that grabs coordinates. 
-* **Exit Program Hotkey:** An emergency "Kill Switch" that instantly closes the TPLL application (default is `f12`).
-* **Minecraft Chat Key:** The key that opens the chat in your Minecraft client (default is `/`).
+Works Without GEP Focus
+    The hotkey works as long as your mouse is over the GEP window,
+    even if another application has focus.
 
-To manually view your configuration file, click the "Open Settings Folder" button to instantly navigate to the hidden AppData directory.
+Auto-Place Mode
+    After teleporting, automatically jumps, looks straight down, and
+    places the block in your hand. Works in both fly mode and normal
+    mode. Toggle it on/off quickly from the Main tab, or set the
+    default in Settings. Make sure you have a block in your hand.
 
-## Troubleshooting
+Coordinate Logging
+    Optionally records every teleport to a CSV file with timestamps.
+    Open it in Excel or Google Sheets to review your history. Enable
+    in Settings, and use "Clear Log" to reset when it gets large.
+    The log file lives in the same folder as your settings.
 
-* **Hotkeys not working:**
-    * Ensure the TPLL Helper is running and the TPLL Hotkey is "active" (check the status bar).
-    * Make sure no other application is aggressively capturing all keyboard input.
-* **Coordinates not copying / Not switching to Minecraft:**
-    * Ensure your mouse is over the Google Earth Pro window when pressing the TPLL Hotkey.
-    * Verify the "Minecraft Chat Key" in the settings matches the exact key you use to open chat in Minecraft.
+System Tray
+    Closing the window (X button) minimizes the app to your system
+    tray instead of quitting. The hotkey keeps running in the
+    background. Right-click the tray icon to show the window or
+    exit. Use the Exit Program Hotkey to quit from anywhere.
 
-## Contact & Support
-* Discord: DM realbigigloo
-* Email: bigigloo4192@gmail.com
+Cumulative Session Time
+    Tracks total time spent across all sessions, persisted to disk.
+    Displayed alongside session uptime on the Main tab.
+
+Coordinate Validation
+    Validates that the clipboard actually contains coordinates before
+    sending anything to Minecraft. No more accidental chat messages
+    from stale clipboard data.
+
+Crash-Safe Statistics
+    TPLL count auto-saves to disk every 10 teleports, so a crash
+    or forced close won't lose your stats.
+
+Live Statistics
+    Tracks TPLLs this session, total TPLLs all-time, last coordinates
+    sent, session uptime, and total time on the Main tab.
+
+Foolproof Settings
+    All hotkeys are configured via dropdown menus — no way to type
+    an invalid key. The TPLL Hotkey dropdown only shows keys that
+    are safe in Google Earth Pro (won't reset your camera, etc).
+    Duplicate hotkey detection prevents you from assigning the same
+    key to multiple functions.
+
+Sound Feedback
+    Optional system beep on successful TPLL. Disabled by default,
+    enable in Settings if you want audio confirmation.
+
+Clean Workspace
+    Settings and log files saved to %LOCALAPPDATA%\TPLLHelper so
+    there's no config file cluttering your desktop. Click "Open
+    Settings Folder" in the Settings tab to find them.
+
+Auto-Start
+    The TPLL hotkey activates automatically on launch.
+
+Minimize on Startup
+    Option to start minimized so it stays out of your way after
+    initial setup.
+
+About Tab
+    Version info, GitHub link (clickable), and contact details.
+    All text is selectable and copyable.
+
+
+SETTINGS
+--------
+TPLL Hotkey (GEP Safe)
+    The key that triggers the teleport macro. Only shows keys that
+    won't interfere with Google Earth Pro's own shortcuts.
+    Default: ` (backtick)
+
+Exit Program Hotkey
+    Emergency kill switch that instantly closes TPLL Helper from
+    anywhere, even from the system tray.
+    Default: F12
+
+Minecraft Chat Key
+    The key that opens chat in your Minecraft client. Must match
+    your in-game keybind exactly.
+    Default: t
+
+Show Window on Startup
+    When unchecked, the app starts minimized.
+
+Enable Auto-Place by Default
+    When checked, Auto-Place mode is on every time the app starts.
+
+Log Coordinates to CSV File
+    When checked, every teleport is recorded with a timestamp.
+
+Play Sound on Successful TPLL
+    When checked, plays a short beep after each teleport.
+    Disabled by default.
+
+All settings persist across sessions in the JSON config file.
+
+
+WINDOW & TRAY BEHAVIOR
+-----------------------
+Clicking the X button does NOT close the app. It minimizes to
+your system tray (the hidden icons area in your taskbar). The
+TPLL hotkey continues to work in the background.
+
+To fully exit the application:
+    - Press the Exit Program Hotkey (default: F12), or
+    - Right-click the tray icon and select "Exit"
+
+To restore the window:
+    - Double-click the tray icon, or
+    - Right-click the tray icon and select "Show Window"
+
+
+TROUBLESHOOTING
+---------------
+Hotkeys not working:
+    - Check the status bar at the bottom of the Main tab. It should
+      say the TPLL Hotkey is "ACTIVE".
+    - Try running the .exe as administrator.
+    - Make sure no other app is capturing global keyboard input.
+
+Clipboard empty / coordinates not copying:
+    - Make sure your mouse cursor is physically over the Google Earth
+      Pro window when you press the hotkey.
+    - If GEP just opened, give it a moment to fully load before trying.
+
+Wrong coordinates or "Invalid coordinates" error:
+    - Another application may have written to your clipboard between
+      the copy and paste. Try again — this is rare.
+
+Not switching to Minecraft:
+    - Verify that Minecraft is open and its window title contains
+      the word "Minecraft".
+    - Check that the Minecraft Chat Key setting matches your in-game
+      chat keybind.
+
+Command appears in chat but doesn't execute:
+    - The chat key setting might be wrong. If your Minecraft chat key
+      is T, the app opens chat with T (no slash prefix), then types
+      the full /tpll command. If your chat key is /, it opens chat
+      with / pre-filled, then types /tpll — resulting in //tpll.
+      Make sure your setting matches your actual keybind.
+
+Auto-Place not placing a block:
+    - Make sure you have a block selected in your hotbar.
+    - On laggy servers, the teleport may take longer to complete.
+      The block placement might fire before you've fully arrived.
+
+Tray icon not appearing:
+    - Check your hidden icons area (click the ^ arrow on your taskbar).
+    - If running from Python source, make sure pystray and Pillow are
+      installed: pip install pystray Pillow
+
+
+CONTACT & SUPPORT
+-----------------
+GitHub:  https://github.com/BigIgloo4192/TPLL-Helper
+Discord: DM realbigigloo
+Email:   bigigloo4192@gmail.com
